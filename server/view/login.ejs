@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Đăng nhập</title>
+    <style>
+        body{ background: url('/img/nature_<%- Math.floor((Math.random() * 6) + 1); %>.jpg'); }
+    </style>
+    <link rel="icon" href="favicon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="login-area">
+        <form action="/login" class="login-form" method="post" autocomplete="off">
+            <div class="caption">Đăng nhập</div>
+            <div class="error"><%- error %></div>
+            <input placeholder="Mã" value="<%- code %>" type="text" name="code" />
+            <input placeholder="Mật khẩu" type="password" name="password"/>
+            
+            <button type="submit" class="submit">
+                <i class="material-icons">send</i>
+            </button>
+        </form>
+    </div>
+</body>
+</html>
