@@ -13,7 +13,7 @@
                         <div class="__test-list">
                             <div v-for="t in active" :key="t" class="__test-text" @click="$message.warning('Bài kiểm tra đang diễn ra !');">
                                 <span class="__test-name">{{ t.name }}</span>
-                                <span class="__test-time">{{ t.createdAt }}</span>
+                                <span class="__test-time">{{ time(t.time) }}</span>
                             </div>
                         </div>
                         
@@ -67,12 +67,28 @@
                 active: [],
             };
         },
+        methods:{
+            time(toi){
+                let __time = toi;
+                let days  = Math.floor(__time/86400); __time -= days*86400;
+                let hours = Math.floor(__time/3600);  __time -= hours*3600;
+                let mins  = Math.floor(__time/60);    __time -= mins*60;
+                let secs  = __time;
+                let data = days + ' : '
+                    + (hours<=9?'0'+String(hours):hours) + ' : '
+                    + (mins<=9?'0'+String(mins):mins) + ' : '
+                    + (secs<=9?'0'+String(secs):secs);
+                return data;
+            }
+        },
         async mounted(){
             this.test = (await ajax.get("/db/tests")).data;
             this.test.map(t=>{
                 this[t.status].unshift(t);
             });
-
+            this.$socket.on("SETUP_TIME",test=>{
+                this.active.find(t=>t.testcode==test.testcode).time = test.time;
+            });
             this.$store.state.loading = false;
         }
     }

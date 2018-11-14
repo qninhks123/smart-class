@@ -38,10 +38,38 @@ action.createTest = async function({question,test},back){
 
     back();
 };
+// UPDATE TEST
+/**
+ * @param {back} Function
+ */
+action.updateTest = async function({test,question}, back = new Function()){
+    await models.test.update(
+        test,{
+            where : {
+                testcode : test.testcode
+            }
+        }
+    );
+    await models.question.destroy({
+        where : {
+            testcode : test.testcode,
+        }
+    })
+    await models.question.bulkCreate(question.map((q,i)=>({
+        ...q,
+        testcode : test.testcode,
+        index : i+1
+    })));
+    back();
+}
 
-action.postTest = async function({test,question},back){
+action.postTest = async function({test,question},back = new Function()){
     io.emit("NEW_TEST",test);
-
+    await models.test.update({status : "active"},{
+        where:{
+            testcode : test.testcode
+        }
+    });
     let counter = setInterval(async ()=>{
         io.emit('SETUP_TIME',test);
         test.time -= 1;

@@ -8,7 +8,7 @@ module.exports = {
         let router = options.router;
         let store  = options.store;
 
-        store.state.account = (await ajax.get("/my-account")).data;
+        
 
         io.on("NEW_TEST",test=>{
             let noti = Notification.success({

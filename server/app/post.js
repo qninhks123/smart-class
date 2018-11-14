@@ -30,7 +30,9 @@ app.post('/db/accounts',async (req,res)=>{
 		action.resetScore();
 		res.json({status:"success"});
     }else{
-        res.json({status:"error"});
+		
+		res.json({status:"error"});
+	
     }
 });
 
@@ -40,19 +42,21 @@ app.post('/db/tests',async (req,res)=>{
 	let exist = await models.test.findOne({ where:{ testcode:test.testcode }});
 	
 	if(exist != null){
-		return res.json({ status:"error" });
+		if (test.status=="save"){
+			action.postTest({test,question},()=>{
+				res.json({ status:"success" });
+			});
+		} else {
+			return res.json({ status:"error" });
+		}
 	}else{
-		test.status = 'active';
+		test.status = "active";
 		action.createTest({ test,question },()=>{
-			if(test.status=='active'){
-				action.postTest({test,question},()=>{
-					res.json({ status:"success" });
-				});
-			}
-			
+			action.postTest({test,question},()=>{
+				res.json({ status:"success" });
+			});
 		});
-		
-	}	
+	};
 });
 
 // CREATE SUBJECT

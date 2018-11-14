@@ -10,6 +10,7 @@
 <script>
     export default {
         created(){
+        
         },
         data(){
             return{

@@ -1,4 +1,5 @@
 import Vue            from "vue";
+import ajax           from "axios";  
 import store          from "./server/store"
 import VueRouter      from "vue-router";
 import ElementUI      from 'element-ui';
@@ -18,6 +19,8 @@ import Console        from "./vue/server/Console.vue";
 import AccountView    from "./vue/server/AccountView.vue";
 import TestView       from "./vue/TestView.vue";
 import axios          from "axios";
+import _TestEditor    from "./vue/_TestEditor.vue";
+import VueX           from "./vue/Vuex.vue";
 import SubjectEditor  from "./vue/server/SubjectEditor.vue";
 import NotFound       from "./vue/NotFound.vue";
 import StudentView    from "./vue/StudentView.vue";
@@ -29,7 +32,7 @@ import Info           from "./vue/Info.vue";
 import SocketIO       from "./server/io";
 import TestResult     from "./vue/TestResult.vue";
 // import locale     from 'element-ui/lib/locale/lang/vi'
-window.chart= [];
+
 // Plugins
 Vue.use(ElementUI,);
 Vue.use(VueRouter);
@@ -59,23 +62,36 @@ var router = new VueRouter({
         { path: '/accounts', component: AccountView },
         { path: "/accounts/:code", component: StudentView },
         { path: '/tools/test', component: TestEditor ,},
+        { path: '/tools/test/:testcode', component: _TestEditor ,},
         { path: '/test', component: TestArea },
         { path: '/test/:testcode', redirect: '/test/:testcode/info' },
         { path: '/test/:testcode/info', component: TestView},
+        { path: '/vuex', component:VueX  },
         { path: '/test/:testcode/info/:code', component: TestResult },
         { path: '/rank', component: Rank },
-        { path: '/*', component:NotFound}
+        { path: '/*', component:NotFound},
+        
     ]
 })
 router.beforeEach((to, from, next) => {
     store.state.loading = true;
     next();
 })
-document.store = store;
+window.store = store;
+
+var vm;
+
+(async ()=>{
+    store.state.account = (await ajax.get("/my-account")).data;
+
+    vm = new Vue({ router,store,
+        el : '#app',
+        render: h => h(App),
+    });
+    window.vm = vm;
+})();
+
 
 //Render
-var vm = new Vue({ router,store,
-    el : '#app',
-    render: h => h(App),
-});
+
 

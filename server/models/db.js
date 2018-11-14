@@ -25,7 +25,7 @@ var db  =  new sql(db_name,db_user,db_password,{
     },
     
     pool: {
-        max: 20,
+        max: 10,
         min: 0,
         idle: 50000,
         acquire: 20000
@@ -33,4 +33,4 @@ var db  =  new sql(db_name,db_user,db_password,{
 });
 
 // db.authenticate()
-module.exports = { db : db, sql : sql};
+module.exports = {db,sql};

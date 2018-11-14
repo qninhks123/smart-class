@@ -188,6 +188,21 @@
             changeScore(){
                 this.question.map(q=>q.score=this.score_setting);
             },
+            async save(){
+                let wait = this.$message.info({
+                    message:'Dang gui ...',
+                    duration:0,
+                });
+                let { data } = await ajax.put(`/db/tests/${this.test.testcode}`,{
+                    test : JSON.stringify({ test:this.test, question:this.question })
+                });
+
+                if(data.status == "success"){
+                    wait.close();
+                }
+                this.$router.push("/tools/test/"+String(this.test.testcode));
+
+            },
             async post(){
                 let wait = this.$message.info({
                     message:'Dang gui ...',

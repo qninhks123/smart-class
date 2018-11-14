@@ -13,13 +13,5 @@ env.config();
     // [+] ACTION
     require("./server/action/test");
 
-// PING APP
-var http = require("http");
-var ping_count = 0;
-
-setInterval(function() {
-    http.get("http://qn123.herokuapp.com",res=>console.log("[",ping_count+=1,"] Ping app !"));
-}, 300000); 
-
 // RUN
 env.http.listen(env.port,()=>console.log(`[${env.port}] Done !!`));

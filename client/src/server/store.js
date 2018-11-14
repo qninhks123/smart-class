@@ -16,6 +16,9 @@ module.exports = new Vuex.Store({
         router :null,   
         loading: false,  
         online: 0,
+        data : {
+            count : 0
+        }
     },
     mutations:{
         SETUP_ACCOUNT(account){

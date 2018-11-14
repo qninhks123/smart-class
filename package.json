@@ -10,7 +10,7 @@
     "start": "node index",
     "start:w": "nodemon",
     "push": "git add . && git commit -am \"push app\" && git push heroku master",
-    "save": "git add . && git commit -am \"save app\" && git push origin master",
+    "save": "git add . && git commit -am\"first commit\" && git push origin master",
     "logs": "heroku logs --tail"
   },
   "author": "qninh",
@@ -58,11 +58,13 @@
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
     "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.4",
     "webpack": "^4.16.1",
     "webpack-cli": "^3.1.0",
     "webpack-simple-progress-plugin": "0.0.4"
   },
   "devDependencies": {
+    "@babel/preset-stage-3": "^7.0.0",
     "babel-preset-vue-app": "^2.0.0",
     "popper.js": "^1.14.3",
     "webpack-bundle-analyzer": "^2.13.1"

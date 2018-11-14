@@ -67,5 +67,5 @@ var vm = new Vue({ router,store,
         return h(App);
     }
 });
-
+window.vm = vm;
 Vue.use(SocketIO,{store,router});

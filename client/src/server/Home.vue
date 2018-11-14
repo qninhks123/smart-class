@@ -3,7 +3,7 @@
         <!-- ROW - I -->
         <div class="view-content row">
             <!-- PROPS - AREA -->
-            <CardView :value="Math.round(db_size/db_max_size*100)" top="Đã sử dụng" :center="db_size+' Mb'" :bottom="`Con ${ db_max_size-db_size } trong ${ db_max_size } Mb`" id="db-prop" icon="storage"></CardView>
+            <CardView :value="Math.round(db_size/db_max_size*100)" top="Đã sử dụng" :center="db_size+' Mb'" :bottom="`Còn ${ db_max_size-db_size } trong ${ db_max_size } Mb`" id="db-prop" icon="storage"></CardView>
             <CardView :value="Math.round(state.online/accounts.length*100)" top="Online" :center="state.online"     :bottom="`Trong ${ accounts.length } h/s`" id="online-prop" icon="school"></CardView>
             <CardView :value="Math.abs(Math.round(inc_ave/pre_ave*100))"  top="Điểm TB" :center="pre_ave+inc_ave" :bottom="(inc_ave>=0?`Tăng `:`Giảm `)+Math.abs(inc_ave)+` điểm so với BKT trước`" id="score-prop"  icon="poll"></CardView>
             <CardView :value="Math.round(inc_high/pre_high*100)" top="Điểm cao" :center="inc_high+pre_high" :bottom="`Tăng `+inc_high+` điểm so với BKT trước`" id="high-prop" icon="show_chart"></CardView>
