@@ -45,5 +45,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-vi-VN.min.js"></script>
 
     <script src="/client/client.min.js"></script>
+    <script>
+        nsZoomZoom(); 
+  
+        $( window ).resize(function() { 
+            nsZoomZoom();
+        });
+        
+        
+        function nsZoomZoom() {
+            htmlWidth = $('html').innerWidth();
+            bodyWidth = 1000;
+            
+            if (htmlWidth < bodyWidth)
+                scale = 1
+            else {
+                scale = htmlWidth / bodyWidth; 
+            }
+        
+            // Req for IE9
+            $("body").css('-ms-transform', 'scale(' + scale + ')');
+            $("body").css('transform', 'scale(' + scale + ')');
+        } 
+    </script>
 </body>
 </html>

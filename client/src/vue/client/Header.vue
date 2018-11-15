@@ -8,10 +8,10 @@
             </router-link>
         </el-menu-item>
         <!-- TOOLS -->
-        <el-submenu index="2" style="margin-left:50px">
+        <!-- <el-submenu index="2" style="margin-left:50px">
             <template slot="title">Tiện ích</template>
 
-        </el-submenu>
+        </el-submenu> -->
         <!-- MY-ACCOUNT -->
         <el-submenu class="row" index="4" style="float:right;margin-right:50px" id="account">
             <!-- AVATAR -->

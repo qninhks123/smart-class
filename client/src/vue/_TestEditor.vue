@@ -17,8 +17,8 @@
                 <el-form id="form" :model="form" label-width="120px">
                     <el-row>
                         <el-col :span="12">
-                            <el-form-item label="Tên">{{ test.name }}</el-form-item>
-                            <el-form-item label="Mã"><el-input v-model="test.testcode"></el-input></el-form-item>
+                            <el-form-item label="Tên"><el-input v-model="test.name"></el-input></el-form-item>
+                            <el-form-item label="Mã"><el-input v-model="test.testcode" disabled></el-input></el-form-item>
                             <el-form-item label="Câu hỏi"><el-input-number controls-position="right" v-model.lazy="test.question"></el-input-number ></el-form-item>
                         </el-col>
                         <el-col :span="12" class="score-setting">
@@ -101,7 +101,7 @@
             <!-- BUTTON -->
             <el-button-group style="margin-left:40%;margin-top:30px;">
                 <el-button type="primary" @click="page=prev()" icon="el-icon-arrow-left">Trước</el-button>
-                <el-button type="primary" @click="page=next()" >&nbsp;Sau&nbsp;<i class="el-icon-arrow-right el-icon-right"></i></el-button>
+                <el-button type="primary" @click="page=next()" >&nbsp;Sau&nbsp;<i class="el-icon-arrow-right el-icon-right a"></i></el-button>
             </el-button-group>
         </el-col>
     </el-row>
@@ -137,6 +137,8 @@
             this.question = (await ajax.get(`/db/tests/${ this.$route.params.testcode }/question`)).data;
             this.$store.state.loading = false;
 
+            this.time = this.convert_time(this.test.time);
+
             this.$load = true;
         },
         computed:{
@@ -160,6 +162,14 @@
             }
         },
         methods:{
+            convert_time(toi){
+                let __time = toi;
+                let days  = Math.floor(__time/86400); __time -= days*86400;
+                let hours = Math.floor(__time/3600);  __time -= hours*3600;
+                let mins  = Math.floor(__time/60);    __time -= mins*60;
+
+                return [days,hours,mins];
+            },
             next(){
                 switch (this.page) {
                     case "props":    return "question"
@@ -194,7 +204,9 @@
             },
             async save() {
                 let wait = this.$message.info({ message:'Đang gửi ...', duration:0,});
-
+                this.test.time = this.__time;
+                this.test.score = 0;
+                this.question.map(q=>this.test.score+=q.score);
                 let { data } = await ajax.put(`/db/tests/${this.$route.params.testcode}`,{
                     test : JSON.stringify({ test:this.test, question:this.question })
                 });
@@ -205,7 +217,7 @@
             },
             async post(){
                 let wait = this.$message.info({
-                    message:'Đang gửi ...',
+                    message:'Đang gửi ..',
                     duration:0,
                 });
                 let send;

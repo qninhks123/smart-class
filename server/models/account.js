@@ -18,7 +18,7 @@ let account = module.exports = db.define("account", {
     },
     luc_hoc  : {
         type : sql.STRING,
-        defaultValue : "kem"
+        defaultValue : "Kém"
     },
     src   : {
         type : sql.STRING,

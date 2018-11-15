@@ -78,7 +78,7 @@ router.beforeEach((to, from, next) => {
     next();
 })
 window.store = store;
-
+Vue.config.devtools = true;
 var vm;
 
 (async ()=>{

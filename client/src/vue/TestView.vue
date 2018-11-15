@@ -122,9 +122,9 @@
             // DANH_GIA
             let tg = [0,0,0,0];
             this.total.map(t=>{
-                if(t.total >= 85) return tg[0] += 1;
-                if(t.total >= 55) return tg[1] += 1;
-                if(t.total >= 25) return tg[2] += 1;
+                if(t.total >= 80) return tg[0] += 1;
+                if(t.total >= 60) return tg[1] += 1;
+                if(t.total >= 40) return tg[2] += 1;
                 return tg[3] += 1;
             });
             this.pie = tg;

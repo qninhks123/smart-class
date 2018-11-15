@@ -39,6 +39,7 @@ Vue.component("QuestionMenu",QuestionMenu);
 Vue.component("ViewHeader",ViewHeader);
 Vue.component("NotFound", NotFound);
 
+Vue.config.devtools = true;
 
 // Router
 var router = new VueRouter({

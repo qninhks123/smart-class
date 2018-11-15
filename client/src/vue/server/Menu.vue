@@ -30,12 +30,9 @@
         </el-menu-item>
 
         <!-- DATABASES -->
-        <el-submenu index="databases">
-            <div slot="title"><i class="material-icons">storage</i>Quản lý</div>
-            <el-menu-item index="databases-1"  @click="$router.push('/accounts')"> 
-                <i class="material-icons">contacts</i>Tài khoản
-            </el-menu-item>
-        </el-submenu>
+        <el-menu-item index="databases-1"  @click="$router.push('/accounts')"> 
+            <i class="material-icons">contacts</i>Tài khoản
+        </el-menu-item>
     </el-menu>
 </template>
 <script>

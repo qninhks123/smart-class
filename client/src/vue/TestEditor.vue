@@ -155,6 +155,7 @@
             }
         },
         methods:{
+            
             next(){
                 switch (this.page) {
                     case "props":    return "question"
@@ -193,6 +194,9 @@
                     message:'Dang gui ...',
                     duration:0,
                 });
+                this.test.time = this.__time;
+                this.test.score = 0;
+                this.question.map(q=>this.test.score+=q.score);
                 let { data } = await ajax.put(`/db/tests/${this.test.testcode}`,{
                     test : JSON.stringify({ test:this.test, question:this.question })
                 });

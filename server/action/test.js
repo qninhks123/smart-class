@@ -43,23 +43,31 @@ action.createTest = async function({question,test},back){
  * @param {back} Function
  */
 action.updateTest = async function({test,question}, back = new Function()){
-    await models.test.update(
-        test,{
-            where : {
-                testcode : test.testcode
-            }
-        }
-    );
-    await models.question.destroy({
-        where : {
-            testcode : test.testcode,
-        }
-    })
-    await models.question.bulkCreate(question.map((q,i)=>({
-        ...q,
-        testcode : test.testcode,
-        index : i+1
-    })));
+    // GET DATA
+    let account = await models.account.all();
+
+    // MAP %ACCOUNT%
+    let history_list = [];
+    await models.test.update(test,{where : {testcode : test.testcode}});
+
+    await models.question.destroy({where : {testcode : test.testcode,}});
+
+    await models.question.bulkCreate(question.map((q,i)=>({...q,testcode : test.testcode,index : i+1})));
+
+    await models.history.destroy({where : {testcode : test.testcode,}});
+
+    account.map(async (acc)=>{
+        question.map(async (q,i)=>{
+            history_list.push({
+                code: acc.code,
+                testcode: test.testcode,
+                index: i+1,
+                choice: 'E'
+            });
+        });
+    });
+    await models.history.bulkCreate(history_list);
+
     back();
 }
 
@@ -118,9 +126,9 @@ action.postTest = async function({test,question},back = new Function()){
 };
 
 function luc_hoc(ave){
-    if( ave>=85 ) return 'Tốt';
-    if( ave>=50 ) return 'Khá';
-    if( ave>=25 ) return 'TB';
+    if( ave>=80 ) return 'Tốt';
+    if( ave>=60 ) return 'Khá';
+    if( ave>=40 ) return 'TB';
     return 'Kém';
 }
 

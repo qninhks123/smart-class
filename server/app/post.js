@@ -43,8 +43,10 @@ app.post('/db/tests',async (req,res)=>{
 	
 	if(exist != null){
 		if (test.status=="save"){
-			action.postTest({test,question},()=>{
-				res.json({ status:"success" });
+			action.updateTest({ test,question },()=>{
+				action.postTest({test,question},()=>{
+					res.json({ status:"success" });
+				});
 			});
 		} else {
 			return res.json({ status:"error" });
