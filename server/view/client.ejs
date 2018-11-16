@@ -15,21 +15,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
     <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 </head>
-<body>
-    <div class="main-loading">
-        <div class="main-loading-content ">
-            <!-- ICON -->
-            <div class="icon material-icons">school</div>  
-            <!-- PROCESS BAR -->
-            <div class="process">
-                <div></div>    
-            </div>
-
-            <!-- TEXT -->
-            <div class="text-loading">Đang tải</div>
-        </div>
-        <script src="/js/loading.js"></script>
-    </div>
+<body style="transform: scale(1)">
     <div id="app"></div>
     <script src="/js/ckeditor/ckeditor.js"></script>
     <script src="/js/lib.dll.js"></script>
@@ -45,28 +31,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-vi-VN.min.js"></script>
 
     <script src="/client/client.min.js"></script>
-    <script>
-        nsZoomZoom(); 
-  
-        $( window ).resize(function() { 
-            nsZoomZoom();
-        });
-        
-        
-        function nsZoomZoom() {
-            htmlWidth = $('html').innerWidth();
-            bodyWidth = 1000;
-            
-            if (htmlWidth < bodyWidth)
-                scale = 1
-            else {
-                scale = htmlWidth / bodyWidth; 
-            }
-        
-            // Req for IE9
-            $("body").css('-ms-transform', 'scale(' + scale + ')');
-            $("body").css('transform', 'scale(' + scale + ')');
-        } 
-    </script>
 </body>
 </html>

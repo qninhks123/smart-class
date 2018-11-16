@@ -58,6 +58,7 @@ module.exports = {
           loader : 'babel-loader',
           query  : {
             presets: ['es2015'],
+            // "plugins": ["@babel/plugin-transform-async-to-generator"],
             cacheDirectory : true
           }
       }]

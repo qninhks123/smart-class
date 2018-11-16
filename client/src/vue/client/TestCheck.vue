@@ -13,7 +13,6 @@
                 </div>
             </div>
             <div class="time-counter col-lg-2">
-                <span class="time-item" ref="day"></span>:
                 <span class="time-item" ref="hour"></span>:
                 <span class="time-item" ref="min"></span>:
                 <span class="time-item" ref="sec"></span>
@@ -131,7 +130,6 @@
                     let min  = Math.floor(__time/60);    __time-=min*60;
                     let sec  = Math.floor(__time);
 
-                    $(this.$refs.day).html(day);
                     $(this.$refs.hour).html(hour<10?'0'+String(hour):hour);
                     $(this.$refs.min).html(min<10?'0'+String(min):min);
                     $(this.$refs.sec).html(sec<10?'0'+String(sec):sec);
