@@ -8,7 +8,7 @@ var {BundleAnalyzerPlugin}  = require('webpack-bundle-analyzer');
 
 module.exports = {
   mode : 'production',
-  watch: true,
+  watch: false,
   entry: {
     server : path.join(__dirname,'../src/server.js'),
     client : path.join(__dirname,'../src/client.js'),
