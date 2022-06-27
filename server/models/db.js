@@ -4,7 +4,7 @@ var db_host,db_user,db_name,db_password;
 if(process.env.PORT!=undefined){
     db_host = 'www.db4free.net';
     db_user = 'qninhks_123';
-    db_name = 'qninh';
+    db_name = 'qninh_123';
     db_password = 'Qninhks123@';
 } else {
     db_host = 'localhost';
