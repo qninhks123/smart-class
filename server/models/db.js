@@ -1,6 +1,8 @@
 var sql =  require("sequelize");
 var db_host,db_user,db_name,db_password;
 
+console.log("lmao");
+
 if(process.env.PORT!=undefined){
     db_host = 'www.db4free.net';
     db_user = 'qninhks_123';
