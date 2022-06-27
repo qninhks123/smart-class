@@ -30,7 +30,7 @@ var db  =  new sql(db_name,db_user,db_password,{
         idle: 50000,
         acquire: 20000
     }
-});
+}); 
 
 // db.authenticate()
 module.exports = {db,sql};
