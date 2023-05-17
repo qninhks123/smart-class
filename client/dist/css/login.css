@@ -1,0 +1,83 @@
+body, html {
+    height: 100%;
+}
+*{ padding: 0; margin: 0; }
+body{ 
+
+    /* Full height */
+    height: 100%; 
+    overflow: hidden;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.login-area{
+    height: 100%;
+    width: 45%;
+    background: rgba(34, 34, 34, 0.1);
+    animation: login-area 2s;
+    float: right;
+    overflow: hidden;
+}
+.login-form{
+    height: 200px;
+    width: 450px;
+    margin: auto;
+    margin-top: 200px;
+}
+.caption{
+    font-size: xx-large;
+    color: ghostwhite;
+    font-weight: bolder;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+input[type='text'],input[type='password']{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: whitesmoke;
+    font-size: large;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    animation: input 2s;
+    padding: 10px;
+    outline: none;
+    margin-top: 20px;
+    width: 300px;
+    margin-left: 20%;
+    border-bottom: 2px rgba(0, 0, 0, 0.1) solid;
+}
+input ::before{
+    content: 'dd';
+}
+.error{
+    text-align: center;
+    color: rgba(252, 0, 0, 0.7);
+    font-size: 18px;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+input::placeholder{
+    color: #fdf5e6;
+}
+input[type='text']:focus,input[type='password']:focus{
+    transition: 1s;
+    border-bottom: 2px rgba(0, 0, 0, 0.5) solid;
+}
+@keyframes login-area{
+    from{ width:0%; background: rgba(255, 255, 255, 0);}
+}
+button{
+    display: block;
+    margin: auto;
+    color:white;
+    height: 40px;
+    width: 80px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    border:0 none;
+    margin-top: 10px;
+}
+
+
+
